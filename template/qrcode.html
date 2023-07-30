@@ -1,0 +1,62 @@
+<html>
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>QR Code</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+  body {
+    font-family: 'Mali', cursive;
+    font-size: 24pt;
+    background-color: White;
+    color: Tomato
+  }
+  #contain {
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  #qrcodecontain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  #textcont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+</head>
+<body onload="startQR();">
+<div id="contain">
+  <div id="qrcodecontain">
+    <div id="qrcode"></div>
+  </div><br /><br />
+  <div id="textcont">{{ .ID }}</div>
+</div>
+</body>
+<script src="/qrcode.js"></script>
+<script>
+var qrcode;
+
+function startQR() {
+  qrcode =  new QRCode("qrcode", {
+    text: ".",
+    width: 350,
+    height: 350,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });	
+  qrcode.clear();
+  qrcode.makeCode({{ .ID }});
+}
+</script>
+</html>

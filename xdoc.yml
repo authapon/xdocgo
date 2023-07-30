@@ -1,0 +1,2 @@
+db: "postgres://user:password@dbhost/xdoc?sslmode=disable"
+listen: ":80"
